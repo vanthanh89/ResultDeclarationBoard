@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 14, 2014 9:49:53 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.entity.Mark" table="Mark" schema="dbo" catalog="ResultDeclaration">
+        <composite-id name="id" class="hibernate.entity.MarkId">
+            <key-property name="studentId" type="java.lang.Integer">
+                <column name="studentId" />
+            </key-property>
+            <key-property name="subjectId" type="java.lang.Integer">
+                <column name="subjectId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="student" class="hibernate.entity.Student" update="false" insert="false" fetch="select">
+            <column name="studentId" not-null="true" />
+        </many-to-one>
+        <many-to-one name="subjects" class="hibernate.entity.Subjects" update="false" insert="false" fetch="select">
+            <column name="subjectId" not-null="true" />
+        </many-to-one>
+        <property name="mark" type="java.lang.Integer">
+            <column name="mark" />
+        </property>
+        <property name="testDate" type="timestamp">
+            <column name="testDate" length="23" />
+        </property>
+        <property name="isReleased" type="string">
+            <column name="isReleased" />
+        </property>
+        <property name="isPass" type="string">
+            <column name="isPass" />
+        </property>
+        <property name="reEvaluation" type="string">
+            <column name="reEvaluation" />
+        </property>
+    </class>
+</hibernate-mapping>

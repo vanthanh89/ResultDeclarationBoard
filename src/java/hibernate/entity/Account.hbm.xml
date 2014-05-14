@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 14, 2014 9:49:53 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.entity.Account" table="Account" schema="dbo" catalog="ResultDeclaration">
+        <id name="accountId" type="java.lang.Integer">
+            <column name="accountId" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" not-null="true" />
+        </property>
+        <property name="passwords" type="string">
+            <column name="passwords" not-null="true" />
+        </property>
+        <property name="roles" type="string">
+            <column name="roles" />
+        </property>
+    </class>
+</hibernate-mapping>
