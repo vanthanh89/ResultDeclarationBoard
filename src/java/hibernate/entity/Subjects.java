@@ -1,8 +1,7 @@
 package hibernate.entity;
-// Generated May 14, 2014 9:49:53 PM by Hibernate Tools 3.6.0
+// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
 
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,33 +11,31 @@ import java.util.Set;
 public class Subjects  implements java.io.Serializable {
 
 
-     private int subjectId;
+     private Integer subjectId;
      private String subjectName;
      private Integer minMark;
      private Integer maxMark;
-     private Set<Mark> marks = new HashSet<Mark>(0);
+     private Set<Marks> marks = new HashSet<Marks>(0);
 
     public Subjects() {
     }
 
 	
-    public Subjects(int subjectId, String subjectName) {
-        this.subjectId = subjectId;
+    public Subjects(String subjectName) {
         this.subjectName = subjectName;
     }
-    public Subjects(int subjectId, String subjectName, Integer minMark, Integer maxMark, Set<Mark> marks) {
-       this.subjectId = subjectId;
+    public Subjects(String subjectName, Integer minMark, Integer maxMark, Set<Marks> marks) {
        this.subjectName = subjectName;
        this.minMark = minMark;
        this.maxMark = maxMark;
        this.marks = marks;
     }
    
-    public int getSubjectId() {
+    public Integer getSubjectId() {
         return this.subjectId;
     }
     
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
     public String getSubjectName() {
@@ -62,11 +59,11 @@ public class Subjects  implements java.io.Serializable {
     public void setMaxMark(Integer maxMark) {
         this.maxMark = maxMark;
     }
-    public Set<Mark> getMarks() {
+    public Set<Marks> getMarks() {
         return this.marks;
     }
     
-    public void setMarks(Set<Mark> marks) {
+    public void setMarks(Set<Marks> marks) {
         this.marks = marks;
     }
 

@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 14, 2014 9:49:53 PM by Hibernate Tools 3.6.0
+// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
 
 
 
@@ -9,50 +9,33 @@ package hibernate.entity;
 public class MarkId  implements java.io.Serializable {
 
 
-     private int studentId;
-     private int subjectId;
+     private Integer studentId;
+     private Integer subjectId;
 
     public MarkId() {
     }
 
-    public MarkId(int studentId, int subjectId) {
+    public MarkId(Integer studentId, Integer subjectId) {
        this.studentId = studentId;
        this.subjectId = subjectId;
     }
    
-    public int getStudentId() {
+    public Integer getStudentId() {
         return this.studentId;
     }
     
-    public void setStudentId(int studentId) {
+    public void setStudentId(Integer studentId) {
         this.studentId = studentId;
     }
-    public int getSubjectId() {
+    public Integer getSubjectId() {
         return this.subjectId;
     }
     
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(Integer subjectId) {
         this.subjectId = subjectId;
     }
 
 
-   public boolean equals(Object other) {
-         if ( (this == other ) ) return true;
-		 if ( (other == null ) ) return false;
-		 if ( !(other instanceof MarkId) ) return false;
-		 MarkId castOther = ( MarkId ) other; 
-         
-		 return (this.getStudentId()==castOther.getStudentId())
- && (this.getSubjectId()==castOther.getSubjectId());
-   }
-   
-   public int hashCode() {
-         int result = 17;
-         
-         result = 37 * result + this.getStudentId();
-         result = 37 * result + this.getSubjectId();
-         return result;
-   }   
 
 
 }

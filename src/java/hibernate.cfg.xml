@@ -12,10 +12,11 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="hibernate/entity/Student.hbm.xml"/>
     <mapping resource="hibernate/entity/Curriculum.hbm.xml"/>
-    <mapping resource="hibernate/entity/Mark.hbm.xml"/>
+    <mapping resource="hibernate/entity/Marks.hbm.xml"/>
     <mapping resource="hibernate/entity/Semester.hbm.xml"/>
     <mapping resource="hibernate/entity/Subjects.hbm.xml"/>
     <mapping resource="hibernate/entity/Account.hbm.xml"/>
     <mapping resource="hibernate/entity/Classs.hbm.xml"/>
+  
   </session-factory>
 </hibernate-configuration>

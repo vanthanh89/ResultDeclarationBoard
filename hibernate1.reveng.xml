@@ -3,10 +3,10 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="ResultDeclaration" match-schema="dbo"/>
   <table-filter match-name="Marks"/>
+  <table-filter match-name="Semester"/>
   <table-filter match-name="Classs"/>
   <table-filter match-name="Student"/>
-  <table-filter match-name="Subjects"/>
-  <table-filter match-name="Semester"/>
   <table-filter match-name="Curriculum"/>
   <table-filter match-name="Account"/>
+  <table-filter match-name="Subjects"/>
 </hibernate-reverse-engineering>
