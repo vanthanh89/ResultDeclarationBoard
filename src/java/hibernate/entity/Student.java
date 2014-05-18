@@ -1,7 +1,8 @@
 package hibernate.entity;
-// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
+// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,25 +12,30 @@ import java.util.Set;
 public class Student  implements java.io.Serializable {
 
 
-     private Integer studentId;
+     private int studentId;
      private Classs classs;
      private String studentName;
-     private Set<Marks> marks = new HashSet<Marks>(0);
+     private Set<Marks> markses = new HashSet<Marks>(0);
 
     public Student() {
     }
 
-    public Student(Classs classs, String studentName, Set<Marks> marks) {
+	
+    public Student(int studentId) {
+        this.studentId = studentId;
+    }
+    public Student(int studentId, Classs classs, String studentName, Set<Marks> markses) {
+       this.studentId = studentId;
        this.classs = classs;
        this.studentName = studentName;
-       this.marks = marks;
+       this.markses = markses;
     }
    
-    public Integer getStudentId() {
+    public int getStudentId() {
         return this.studentId;
     }
     
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
     public Classs getClasss() {
@@ -46,12 +52,12 @@ public class Student  implements java.io.Serializable {
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
-    public Set<Marks> getMarks() {
-        return this.marks;
+    public Set<Marks> getMarkses() {
+        return this.markses;
     }
     
-    public void setMarks(Set<Marks> marks) {
-        this.marks = marks;
+    public void setMarkses(Set<Marks> markses) {
+        this.markses = markses;
     }
 
 

@@ -1,7 +1,8 @@
 package hibernate.entity;
-// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
+// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 public class Curriculum  implements java.io.Serializable {
 
 
-     private Integer curriculumId;
+     private int curriculumId;
      private String curriculumName;
      private Set<Semester> semesters = new HashSet<Semester>(0);
 
@@ -19,22 +20,24 @@ public class Curriculum  implements java.io.Serializable {
     }
 
 	
-    public Curriculum(String curriculumName) {
+    public Curriculum(int curriculumId, String curriculumName) {
+        this.curriculumId = curriculumId;
         this.curriculumName = curriculumName;
     }
-    public Curriculum(String curriculumName, Set<Semester> semesters) {
+    public Curriculum(int curriculumId, String curriculumName, Set<Semester> semesters) {
+       this.curriculumId = curriculumId;
        this.curriculumName = curriculumName;
        this.semesters = semesters;
     }
    
-    public Integer getCurriculumId() {
+    public int getCurriculumId() {
         return this.curriculumId;
     }
     
-    public void setCurriculumId(Integer curriculumId) {
+    public void setCurriculumId(int curriculumId) {
         this.curriculumId = curriculumId;
     }
-    public String getCurriculumName() {
+    public Serializable getCurriculumName() {
         return this.curriculumName;
     }
     

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.entity.ReEvaluation" table="ReEvaluation" schema="dbo" catalog="ResultDeclaration">
+        <id name="reEvaluationId" type="java.lang.Integer">
+            <column name="reEvaluationId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="marks" class="hibernate.entity.Marks" fetch="select">
+            <column name="marksId" />
+        </many-to-one>
+        <property name="states" type="java.lang.Integer">
+            <column name="states" />
+        </property>
+    </class>
+</hibernate-mapping>

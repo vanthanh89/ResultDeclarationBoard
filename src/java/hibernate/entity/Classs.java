@@ -1,7 +1,8 @@
 package hibernate.entity;
-// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
+// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,33 +12,29 @@ import java.util.Set;
 public class Classs  implements java.io.Serializable {
 
 
-     private Integer classId;
-     private Semester semester;
+     private int classId;
      private String className;
      private Set<Student> students = new HashSet<Student>(0);
 
     public Classs() {
     }
 
-    public Classs(Semester semester, String className, Set<Student> students) {
-       this.semester = semester;
+	
+    public Classs(int classId) {
+        this.classId = classId;
+    }
+    public Classs(int classId, String className, Set<Student> students) {
+       this.classId = classId;
        this.className = className;
        this.students = students;
     }
    
-    public Integer getClassId() {
+    public int getClassId() {
         return this.classId;
     }
     
-    public void setClassId(Integer classId) {
+    public void setClassId(int classId) {
         this.classId = classId;
-    }
-    public Semester getSemester() {
-        return this.semester;
-    }
-    
-    public void setSemester(Semester semester) {
-        this.semester = semester;
     }
     public String getClassName() {
         return this.className;

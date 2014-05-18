@@ -1,7 +1,8 @@
 package hibernate.entity;
-// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
+// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,32 +12,45 @@ import java.util.Set;
 public class Subjects  implements java.io.Serializable {
 
 
-     private Integer subjectId;
+     private int subjectId;
+     private Semester semester;
      private String subjectName;
      private Integer minMark;
      private Integer maxMark;
-     private Set<Marks> marks = new HashSet<Marks>(0);
+     private Integer cost;
+     private Set<Marks> markses = new HashSet<Marks>(0);
 
     public Subjects() {
     }
 
 	
-    public Subjects(String subjectName) {
+    public Subjects(int subjectId, String subjectName) {
+        this.subjectId = subjectId;
         this.subjectName = subjectName;
     }
-    public Subjects(String subjectName, Integer minMark, Integer maxMark, Set<Marks> marks) {
+    public Subjects(int subjectId, Semester semester, String subjectName, Integer minMark, Integer maxMark, Integer cost, Set<Marks> markses) {
+       this.subjectId = subjectId;
+       this.semester = semester;
        this.subjectName = subjectName;
        this.minMark = minMark;
        this.maxMark = maxMark;
-       this.marks = marks;
+       this.cost = cost;
+       this.markses = markses;
     }
    
-    public Integer getSubjectId() {
+    public int getSubjectId() {
         return this.subjectId;
     }
     
-    public void setSubjectId(Integer subjectId) {
+    public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
+    }
+    public Semester getSemester() {
+        return this.semester;
+    }
+    
+    public void setSemester(Semester semester) {
+        this.semester = semester;
     }
     public String getSubjectName() {
         return this.subjectName;
@@ -59,12 +73,19 @@ public class Subjects  implements java.io.Serializable {
     public void setMaxMark(Integer maxMark) {
         this.maxMark = maxMark;
     }
-    public Set<Marks> getMarks() {
-        return this.marks;
+    public Integer getCost() {
+        return this.cost;
     }
     
-    public void setMarks(Set<Marks> marks) {
-        this.marks = marks;
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+    public Set<Marks> getMarkses() {
+        return this.markses;
+    }
+    
+    public void setMarkses(Set<Marks> markses) {
+        this.markses = markses;
     }
 
 

@@ -9,14 +9,14 @@
     <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.ast.ASTQueryTranslatorFactory</property>
     <mapping resource="hibernate/entity/Student.hbm.xml"/>
     <mapping resource="hibernate/entity/Curriculum.hbm.xml"/>
     <mapping resource="hibernate/entity/Marks.hbm.xml"/>
+    <mapping resource="hibernate/entity/ReEvaluation.hbm.xml"/>
     <mapping resource="hibernate/entity/Semester.hbm.xml"/>
+    <mapping resource="hibernate/entity/Users.hbm.xml"/>
     <mapping resource="hibernate/entity/Subjects.hbm.xml"/>
-    <mapping resource="hibernate/entity/Account.hbm.xml"/>
     <mapping resource="hibernate/entity/Classs.hbm.xml"/>
-  
   </session-factory>
 </hibernate-configuration>

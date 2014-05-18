@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 15, 2014 10:06:44 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.Classs" table="Classs" schema="dbo" catalog="ResultDeclaration">
         <id name="classId" type="java.lang.Integer">
             <column name="classId" />
-            <generator class="identity"></generator>
+            <generator class="identity" />
         </id>
-        <many-to-one name="semester" class="hibernate.entity.Semester" fetch="select">
-            <column name="semesterId" />
-        </many-to-one>
         <property name="className" type="string">
             <column name="className" />
         </property>

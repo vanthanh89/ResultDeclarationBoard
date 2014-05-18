@@ -1,7 +1,8 @@
 package hibernate.entity;
-// Generated May 15, 2014 10:06:42 PM by Hibernate Tools 3.6.0
+// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
 
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,29 +12,33 @@ import java.util.Set;
 public class Semester  implements java.io.Serializable {
 
 
-     private Integer semesterId;
+     private int semesterId;
      private Curriculum curriculum;
      private String semesterName;
-     private Set<Classs> classses = new HashSet<Classs>(0);
+     private String term;
+     private Set<Subjects> subjectses = new HashSet<Subjects>(0);
 
     public Semester() {
     }
 
 	
-    public Semester(String semesterName) {
+    public Semester(int semesterId, String semesterName) {
+        this.semesterId = semesterId;
         this.semesterName = semesterName;
     }
-    public Semester(Curriculum curriculum, String semesterName, Set<Classs> classses) {
+    public Semester(int semesterId, Curriculum curriculum, String semesterName, String term, Set<Subjects> subjectses) {
+       this.semesterId = semesterId;
        this.curriculum = curriculum;
        this.semesterName = semesterName;
-       this.classses = classses;
+       this.term = term;
+       this.subjectses = subjectses;
     }
    
-    public Integer getSemesterId() {
+    public int getSemesterId() {
         return this.semesterId;
     }
     
-    public void setSemesterId(Integer semesterId) {
+    public void setSemesterId(int semesterId) {
         this.semesterId = semesterId;
     }
     public Curriculum getCurriculum() {
@@ -50,12 +55,19 @@ public class Semester  implements java.io.Serializable {
     public void setSemesterName(String semesterName) {
         this.semesterName = semesterName;
     }
-    public Set<Classs> getClassses() {
-        return this.classses;
+    public String getTerm() {
+        return this.term;
     }
     
-    public void setClassses(Set<Classs> classses) {
-        this.classses = classses;
+    public void setTerm(String term) {
+        this.term = term;
+    }
+    public Set<Subjects> getSubjectses() {
+        return this.subjectses;
+    }
+    
+    public void setSubjectses(Set<Subjects> subjectses) {
+        this.subjectses = subjectses;
     }
 
 

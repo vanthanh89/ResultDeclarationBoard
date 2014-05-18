@@ -1,26 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 15, 2014 10:06:44 PM by Hibernate Tools 3.6.0 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-  <class catalog="ResultDeclaration" name="hibernate.entity.Subjects" schema="dbo" table="Subjects">
-    <id name="subjectId" type="java.lang.Integer">
-      <column name="subjectId"/>
-      <generator class="identity"/>
-    </id>
-    <property name="subjectName" type="string">
-      <column name="subjectName" not-null="true"/>
-    </property>
-    <property name="minMark" type="java.lang.Integer">
-      <column name="minMark"/>
-    </property>
-    <property name="maxMark" type="java.lang.Integer">
-      <column name="maxMark"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="marks" table="Mark">
-      <key>
-        <column name="subjectId" not-null="true"/>
-      </key>
-      <one-to-many class="hibernate.entity.Marks"/>
-    </set>
-  </class>
+    <class name="hibernate.entity.Subjects" table="Subjects" schema="dbo" catalog="ResultDeclaration">
+        <id name="subjectId" type="java.lang.Integer">
+            <column name="subjectId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="semester" class="hibernate.entity.Semester" fetch="select">
+            <column name="semesterId" />
+        </many-to-one>
+        <property name="subjectName" type="string">
+            <column name="subjectName" not-null="true" />
+        </property>
+        <property name="minMark" type="java.lang.Integer">
+            <column name="minMark" />
+        </property>
+        <property name="maxMark" type="java.lang.Integer">
+            <column name="maxMark" />
+        </property>
+        <property name="cost" type="java.lang.Integer">
+            <column name="cost" />
+        </property>
+        <set name="markses" table="Marks" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="subjectId" />
+            </key>
+            <one-to-many class="hibernate.entity.Marks" />
+        </set>
+    </class>
 </hibernate-mapping>
