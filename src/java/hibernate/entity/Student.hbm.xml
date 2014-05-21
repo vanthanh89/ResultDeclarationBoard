@@ -1,22 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 21, 2014 5:40:07 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.Student" table="Student" schema="dbo" catalog="ResultDeclaration">
         <id name="studentId" type="java.lang.Integer">
             <column name="studentId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="classs" class="hibernate.entity.Classs" fetch="select">
-            <column name="classId" />
-        </many-to-one>
         <property name="studentName" type="string">
             <column name="studentName" />
         </property>
         <set name="markses" table="Marks" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="studentId" />
+                <column name="studentId" not-null="true" />
             </key>
             <one-to-many class="hibernate.entity.Marks" />
         </set>

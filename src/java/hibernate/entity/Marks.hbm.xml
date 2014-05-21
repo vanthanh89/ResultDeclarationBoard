@@ -1,18 +1,22 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 21, 2014 5:40:07 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.Marks" table="Marks" schema="dbo" catalog="ResultDeclaration">
-        <id name="marksId" type="java.lang.Integer">
-            <column name="marksId" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="student" class="hibernate.entity.Student" fetch="select">
-            <column name="studentId" />
+        <composite-id name="id" class="hibernate.entity.MarksId">
+            <key-property name="studentId" type="int">
+                <column name="studentId" />
+            </key-property>
+            <key-property name="subjectId" type="int">
+                <column name="subjectId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="student" class="hibernate.entity.Student" update="false" insert="false" fetch="select">
+            <column name="studentId" not-null="true" />
         </many-to-one>
-        <many-to-one name="subjects" class="hibernate.entity.Subjects" fetch="select">
-            <column name="subjectId" />
+        <many-to-one name="subjects" class="hibernate.entity.Subjects" update="false" insert="false" fetch="select">
+            <column name="subjectId" not-null="true" />
         </many-to-one>
         <property name="mark" type="java.lang.Integer">
             <column name="mark" />
@@ -20,18 +24,16 @@
         <property name="testDate" type="timestamp">
             <column name="testDate" length="23" />
         </property>
-        <property name="isReleased" type="serializable">
-            <column name="isReleased" />
+        <property name="isPassed" type="string">
+            <column name="isPassed" />
         </property>
-        <property name="isPass" type="string">
-            <column name="isPass" />
-        </property>
-        <property name="reEvaluation" type="string">
-            <column name="reEvaluation" />
+        <property name="isReevaluated" type="string">
+            <column name="isReevaluated" />
         </property>
         <set name="reEvaluations" table="ReEvaluation" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="marksId" />
+                <column name="studentId" />
+                <column name="subjectId" />
             </key>
             <one-to-many class="hibernate.entity.ReEvaluation" />
         </set>

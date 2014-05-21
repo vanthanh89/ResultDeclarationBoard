@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 21, 2014 5:40:07 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.Users" table="Users" schema="dbo" catalog="ResultDeclaration">
         <id name="userId" type="java.lang.Integer">
@@ -14,7 +14,7 @@
         <property name="passwords" type="string">
             <column name="passwords" not-null="true" />
         </property>
-        <property name="roles" type="string">
+        <property name="roles" type="serializable">
             <column name="roles" />
         </property>
     </class>

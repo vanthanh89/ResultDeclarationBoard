@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
+// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -37,7 +37,7 @@ public class Curriculum  implements java.io.Serializable {
     public void setCurriculumId(int curriculumId) {
         this.curriculumId = curriculumId;
     }
-    public Serializable getCurriculumName() {
+    public String getCurriculumName() {
         return this.curriculumName;
     }
     

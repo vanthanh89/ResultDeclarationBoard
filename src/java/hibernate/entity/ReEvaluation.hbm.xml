@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 18, 2014 12:37:32 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 21, 2014 5:40:07 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.ReEvaluation" table="ReEvaluation" schema="dbo" catalog="ResultDeclaration">
         <id name="reEvaluationId" type="java.lang.Integer">
@@ -9,10 +9,11 @@
             <generator class="identity" />
         </id>
         <many-to-one name="marks" class="hibernate.entity.Marks" fetch="select">
-            <column name="marksId" />
+            <column name="studentId" />
+            <column name="subjectId" />
         </many-to-one>
-        <property name="states" type="java.lang.Integer">
-            <column name="states" />
+        <property name="isUpdated" type="string">
+            <column name="isUpdated" />
         </property>
     </class>
 </hibernate-mapping>

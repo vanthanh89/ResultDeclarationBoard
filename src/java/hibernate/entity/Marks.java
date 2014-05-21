@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
+// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -13,41 +13,41 @@ import java.util.Set;
 public class Marks  implements java.io.Serializable {
 
 
-     private int marksId;
+     private MarksId id;
      private Student student;
      private Subjects subjects;
      private Integer mark;
      private Date testDate;
-     private String isReleased;
-     private String isPass;
-     private String reEvaluation;
+     private String isPassed;
+     private String isReevaluated;
      private Set<ReEvaluation> reEvaluations = new HashSet<ReEvaluation>(0);
 
     public Marks() {
     }
 
 	
-    public Marks(int marksId) {
-        this.marksId = marksId;
+    public Marks(MarksId id, Student student, Subjects subjects) {
+        this.id = id;
+        this.student = student;
+        this.subjects = subjects;
     }
-    public Marks(int marksId, Student student, Subjects subjects, Integer mark, Date testDate, String isReleased, String isPass, String reEvaluation, Set<ReEvaluation> reEvaluations) {
-       this.marksId = marksId;
+    public Marks(MarksId id, Student student, Subjects subjects, Integer mark, Date testDate, String isPassed, String isReevaluated, Set<ReEvaluation> reEvaluations) {
+       this.id = id;
        this.student = student;
        this.subjects = subjects;
        this.mark = mark;
        this.testDate = testDate;
-       this.isReleased = isReleased;
-       this.isPass = isPass;
-       this.reEvaluation = reEvaluation;
+       this.isPassed = isPassed;
+       this.isReevaluated = isReevaluated;
        this.reEvaluations = reEvaluations;
     }
    
-    public int getMarksId() {
-        return this.marksId;
+    public MarksId getId() {
+        return this.id;
     }
     
-    public void setMarksId(int marksId) {
-        this.marksId = marksId;
+    public void setId(MarksId id) {
+        this.id = id;
     }
     public Student getStudent() {
         return this.student;
@@ -77,26 +77,19 @@ public class Marks  implements java.io.Serializable {
     public void setTestDate(Date testDate) {
         this.testDate = testDate;
     }
-    public String getIsReleased() {
-        return this.isReleased;
+    public String getIsPassed() {
+        return this.isPassed;
     }
     
-    public void setIsReleased(String isReleased) {
-        this.isReleased = isReleased;
+    public void setIsPassed(String isPassed) {
+        this.isPassed = isPassed;
     }
-    public String getIsPass() {
-        return this.isPass;
-    }
-    
-    public void setIsPass(String isPass) {
-        this.isPass = isPass;
-    }
-    public String getReEvaluation() {
-        return this.reEvaluation;
+    public String getIsReevaluated() {
+        return this.isReevaluated;
     }
     
-    public void setReEvaluation(String reEvaluation) {
-        this.reEvaluation = reEvaluation;
+    public void setIsReevaluated(String isReevaluated) {
+        this.isReevaluated = isReevaluated;
     }
     public Set<ReEvaluation> getReEvaluations() {
         return this.reEvaluations;

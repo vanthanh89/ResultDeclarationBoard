@@ -7,6 +7,7 @@
 
 <struts-config>
     <form-beans>
+        <form-bean name="ActionFormBean" type="ActionFormBean.ActionFormBean"/>
     
     </form-beans>
     
@@ -19,6 +20,14 @@
     </global-forwards>
 
     <action-mappings>
+       
+        <action input="/insertmark.jsp" name="ActionFormBean" path="/insert" scope="session" type="actionBean.insertmark" validate="false">
+            <forward name="success" path="/insertmark.jsp"/>
+        </action>
+        <action input="/approval.jsp" name="ActionFormBean" path="/approvalMark" scope="request" type="actionBean.approvalMark" validate="false">
+            <forward name="success" path="/approval.jsp"/>
+        </action>
+        
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>
     

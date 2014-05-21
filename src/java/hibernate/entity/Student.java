@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 18, 2014 12:37:30 PM by Hibernate Tools 3.6.0
+// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -13,7 +13,6 @@ public class Student  implements java.io.Serializable {
 
 
      private int studentId;
-     private Classs classs;
      private String studentName;
      private Set<Marks> markses = new HashSet<Marks>(0);
 
@@ -24,9 +23,8 @@ public class Student  implements java.io.Serializable {
     public Student(int studentId) {
         this.studentId = studentId;
     }
-    public Student(int studentId, Classs classs, String studentName, Set<Marks> markses) {
+    public Student(int studentId, String studentName, Set<Marks> markses) {
        this.studentId = studentId;
-       this.classs = classs;
        this.studentName = studentName;
        this.markses = markses;
     }
@@ -37,13 +35,6 @@ public class Student  implements java.io.Serializable {
     
     public void setStudentId(int studentId) {
         this.studentId = studentId;
-    }
-    public Classs getClasss() {
-        return this.classs;
-    }
-    
-    public void setClasss(Classs classs) {
-        this.classs = classs;
     }
     public String getStudentName() {
         return this.studentName;

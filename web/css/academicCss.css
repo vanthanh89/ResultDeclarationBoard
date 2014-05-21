@@ -1,0 +1,39 @@
+#main{
+    width: 1080px;
+    margin: auto;
+}
+#header
+{
+    width: 1080px;
+    min-height: 200px;
+    float: left;
+    border: #cccccc solid 1px;
+}
+#content
+{
+    width: 1080px;
+    min-height: 500px;
+    float: left;
+    border: #cccccc solid 1px;
+}
+#content_left
+{
+    width: 200px;
+    min-height: 300px;
+    float: left;
+    border: #cccccc solid 1px;
+}
+#content_right
+{
+    width: 876px;
+    min-height: 500px;
+    float: left;
+    border: #cccccc solid 1px;
+}
+#footer
+{
+    width: 1080px;
+    min-height: 100px;
+    float: left;
+    border: #cccccc solid 1px;
+}
