@@ -20,8 +20,8 @@
             <div id="header"></div>
             <div id="content">
                 <div id="content_left">
-                    <div><a href="insertmark.jsp">Upload Mark</a></div>
-                    <div><a href="insertmark.jsp">Upload Mark</a></div>
+                   <div><a href="insertmark.jsp">Upload Mark</a></div>
+                    <div><a href="viewreevaluation.jsp">View Re-evaluation</a></div>
                 </div>
                 <div id="content_right">
                     <center>

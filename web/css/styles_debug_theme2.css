@@ -1,0 +1,117 @@
+/** Path: theme blue **/
+/********************************************************
+**
+** Theme name: Splash
+** Creation Date: 30/06/09
+** Author: Synergy Learning
+** Author URI: http://synergylearning.com
+**
+*********************************************************/
+
+/* Global 
+------------------------*/
+
+body.ftheme-blue {                /* Define margins and background colour/image */
+    background: url(image.php?theme=ftheme&image=bgblue&component=theme) top left repeat-x #fff;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.ftheme-blue a:link {        /* Defining all link styles*/
+    color: #3d6276;
+}
+
+.ftheme-blue a:visited {        /* Setting all visited link styles */
+    color: #3d6276;
+}
+
+.ftheme-blue a:hover {        /* Setting all rollover link styles */
+    color: #294b5d;
+}
+
+.ftheme-blue a:active {        /* Setting all active link styles */
+    color: #3d6276;
+}
+
+
+/* Header 
+-----------------------*/
+.ftheme-blue #page-header {            /* Set height for header */
+    float: none;
+    padding: 0;
+    margin:0;
+    color: #fff;
+    height: 190px;
+    background: url(image.php?theme=ftheme&image=pageheaderbgblue&component=theme) top center no-repeat;
+
+}
+
+.ftheme-blue #logobox{  /* holder background for logo*/
+    height: 110px;
+    width: 252px;
+    margin: auto;
+    text-align: center;
+    background: url(image.php?theme=ftheme&image=lbgv2blue&component=theme) no-repeat;
+    float: left;
+}
+
+
+.ftheme-blue #colourswitcher p{
+    color:#3d6276
+}
+
+
+/* Custom Menu
+-----------------------*/
+.ftheme-blue #custommenu .yui3-menu-content ul.first-of-type li{
+    border-right: 1px solid #bfced7;
+}
+
+.ftheme-blue #custommenu div.yui3-menu.custom_menu_submenu .yui3-menu-content{
+    background:#3d6276;
+    border:1px solid #fff;
+    color: #fff;
+}
+
+/* Content
+-----------------------*/
+
+.ftheme-blue .coursebox{
+    padding-left:5px;
+    border-bottom: 1px dashed #cbd3d6;
+}
+
+.ftheme-blue ul.topics li#section-0, ul.weeks li#section-0 {
+    background: #386377;
+    border: 1px solid #ccc;
+}
+
+/* Sideblocks
+-----------------------*/
+
+.ftheme-blue #region-pre .block .header,
+.ftheme-blue #region-post .block .header {  /*-- right block header   --*/
+    background: url(image.php?theme=ftheme&image=sbheaderbg2blue&component=theme) center no-repeat;
+    padding: 12px 5px 5px;
+    color: #fff;
+}
+
+/* Mini Calendar
+------------------------*/
+
+.ftheme-blue .block .minicalendar td.weekend {    /* setting weekend date colour */
+    color:#3d6276;
+}
+
+
+/* Forum
+------------------------*/
+
+.ftheme-blue .forumpost .topic .subject {    /* forum subject section inside topic header */
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-left: 5px;
+    background: #3d6276;
+    color: #fff;
+}

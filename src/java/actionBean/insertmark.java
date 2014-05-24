@@ -72,7 +72,7 @@ public class insertmark extends org.apache.struts.action.Action {
             request.setAttribute("studentErr", "student is exist this subject mark");
             return mapping.findForward(SUCCESS);
         }
-        if(im.getSubjectId() > 25)
+        if(Integer.parseInt(strmark) > 25)
         {
             flag = false;
             request.setAttribute("markErr", "mark is max <=25");

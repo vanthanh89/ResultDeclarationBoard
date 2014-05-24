@@ -24,9 +24,26 @@
         <action input="/insertmark.jsp" name="ActionFormBean" path="/insert" scope="session" type="actionBean.insertmark" validate="false">
             <forward name="success" path="/insertmark.jsp"/>
         </action>
-        <action input="/approval.jsp" name="ActionFormBean" path="/approvalMark" scope="request" type="actionBean.approvalMark" validate="false">
+        <action input="/approval.jsp" name="ActionFormBean" path="/approvalMark" scope="session" type="actionBean.approvalMark" validate="false">
             <forward name="success" path="/approval.jsp"/>
         </action>
+        <action input="/viewreevaluation.jsp" name="ActionFormBean" path="/action" scope="session" type="actionBean.UpdateMark" validate="false">
+            <forward name="success" path="/updatemark.jsp"/>
+            
+        </action>
+        <action input="/updatemark.jsp" name="ActionFormBean" path="/update" scope="session" type="actionBean.UpdateRevaluation" validate="false">
+            <forward name="error" path="/updatemark.jsp"/>
+            <forward name="success" path="/viewreevaluation.jsp"/>
+        </action>
+        <action input="/results.jsp" name="ActionFormBean" path="/searchMark" scope="request" type="actionBean.SearchMark" validate="false">
+            <forward name="success" path="/markview.jsp"/>
+            <forward name="fail" path="/results.jsp"/>
+            
+        </action>
+        <action input="/markview.jsp" name="ActionFormBean" path="/reevaluation" scope="request" type="actionBean.Reevaluation" validate="false">
+            <forward name="success" path="/reevaluation.jsp"/>
+        </action>
+        <action input="/reevaluation.jsp" name="ActionFormBean" path="/insertReevaluation" scope="request" type="actionBean.InsertReevaluation" validate="false"/>
         
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>

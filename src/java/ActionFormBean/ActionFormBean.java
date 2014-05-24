@@ -6,8 +6,9 @@
 
 package ActionFormBean;
 
+import hibernate.entity.Marks;
+import hibernate.entity.ReEvaluation;
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
@@ -19,7 +20,57 @@ import org.apache.struts.action.ActionMessage;
 public class ActionFormBean extends org.apache.struts.action.ActionForm {
     
     private int subjectId;
+    private String button;
+    
+    private String mark;
+    private int studentId;
+    private String strStudentId;
+    private int reEvaluationId;
+   
+    public String getStrStudentId() {
+        return strStudentId;
+    }
 
+    
+
+    public void setStrStudentId(String strStudentId) {
+        this.strStudentId = strStudentId;
+    }
+
+    public int getReEvaluationId() {
+        return reEvaluationId;
+    }
+
+    public void setReEvaluationId(int reEvaluationId) {
+        this.reEvaluationId = reEvaluationId;
+    }
+    
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+ 
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+    
+
+    
+    public String getButton() {
+        return button;
+    }
+
+    public void setButton(String button) {
+        this.button = button;
+    }
+    
     public int getSubjectId() {
         return subjectId;
     }
