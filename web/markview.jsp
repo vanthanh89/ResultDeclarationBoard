@@ -24,7 +24,10 @@
                 <div class="box_container"><div style="text-align: left;font-size: 20px; margin-left: 10px;">Tra cứu kết quả học tập</div></div>
                 <div class="box_container"><a href="results.jsp"><input type="submit" value="Back" /></a></div>
                 <div class="box_container"><h1>Kết quả học tập của sinh viên</h1></div>
-                <div class="box_container"><div><span style="color: #0000ff;">chú ý: chỉ được phúc tra điểm trong vòng 1 tuần kể từ ngày có điểm </span></div></div>
+                <div class="box_container">
+                    <div><span style="color: #0000ff;">chú ý: chỉ được phúc tra điểm trong vòng 1 tuần kể từ ngày có điểm </span></div>
+                    <div><span style="color: #00cc00;">${requestScope.info} </span></div>
+                </div>
                 <div class="box_container">
                     <div class="result_content">
                         <div class="text">Student ID :</div>

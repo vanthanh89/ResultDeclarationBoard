@@ -194,6 +194,30 @@ public class AcademicDepartmentDAO {
         }
         return null;
     }
+    public List getAllReevaluationUnpaid() {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            String sql = " from ReEvaluation where isUpdated ='unpaid' ";
+            Query query = session.createQuery(sql);
+
+            List<ReEvaluation> result = (List<ReEvaluation>) query.list();
+
+            for (ReEvaluation re : result) {
+                Hibernate.initialize(re.getMarks());
+                Hibernate.initialize(re.getMarks().getSubjects());
+            }
+            session.flush();
+            session.getTransaction().commit();
+            return result;
+        } catch (Exception ex) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+        }
+        return null;
+    }
 
     public void updateMark(MarksId mId, int mark) {
         CreateSession create = new CreateSession();
@@ -238,7 +262,23 @@ public class AcademicDepartmentDAO {
             e.printStackTrace();
         }
     }
-
+public void updateReevaluationToPending(int reEvaluationid) {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            ReEvaluation re = (ReEvaluation) session.get(ReEvaluation.class, reEvaluationid);
+            re.setIsUpdated("pending");
+            session.update(re);
+            session.flush();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        }
+    }
     public Marks getMarkById(MarksId id) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
@@ -288,7 +328,7 @@ public class AcademicDepartmentDAO {
             MarksId mid = new MarksId(studentId,subjectId);
             Marks m =(Marks) session.get(Marks.class, mid);
             re.setMarks(m);
-            re.setIsUpdated("Unpaid");
+            re.setIsUpdated("unpaid");
             session.save(re);
             session.flush();
             session.getTransaction().commit();
@@ -299,6 +339,29 @@ public class AcademicDepartmentDAO {
             }
 
         }
+    }
+    public boolean checkReevaluation(int studentId,int subjectId)
+    {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            String sql = " from ReEvaluation where studentId = " + studentId + " and subjectId = " + subjectId + " ";
+            Query query = session.createQuery(sql);
+            List lst = query.list();
+            session.flush();
+            session.getTransaction().commit();
+
+            if (lst.isEmpty()) {
+                return false;
+            }
+            return true;
+        } catch (Exception ex) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+        }
+        return false;
     }
 //    public void approvalMark(int markId) {
 //        CreateSession create = new CreateSession();

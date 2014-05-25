@@ -25,6 +25,7 @@
                 <div id="content_left">
                     <div><a href="insertmark.jsp">Upload Mark</a></div>
                     <div><a href="viewreevaluation.jsp">View Re-evaluation</a></div>
+                    <div><a href="viewreevaluationunpaid.jsp">View Re-evaluation Unpaid</a></div>
                 </div>
                 <div id="content_right">
                     <center>

@@ -43,7 +43,12 @@
         <action input="/markview.jsp" name="ActionFormBean" path="/reevaluation" scope="request" type="actionBean.Reevaluation" validate="false">
             <forward name="success" path="/reevaluation.jsp"/>
         </action>
-        <action input="/reevaluation.jsp" name="ActionFormBean" path="/insertReevaluation" scope="request" type="actionBean.InsertReevaluation" validate="false"/>
+        <action input="/reevaluation.jsp" name="ActionFormBean" path="/insertReevaluation" scope="request" type="actionBean.InsertReevaluation" validate="false">
+            <forward name="success" path="/markview.jsp"/>
+        </action>
+        <action input="/viewreevaluationunpaid.jsp" name="ActionFormBean" path="/viewReevaluationUnpaid" scope="request" type="actionBean.ViewReevaluationUnpaid" validate="false">
+            <forward name="success" path="/viewreevaluationunpaid.jsp"/>
+        </action>
         
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>

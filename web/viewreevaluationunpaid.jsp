@@ -29,11 +29,11 @@
                 </div>
                 <div id="content_right">
                     <center>
-                        <h1>Re-evaluation List</h1>
+                        <h1>Re-evaluation Unpaid List</h1>
 
                         <div style="color: blue">${requestScope.info}</div>
                         <jsp:useBean id="dao" class="hibernate.dao.AcademicDepartmentDAO" scope="session"></jsp:useBean>
-                        <c:set var="lstReevaluation" value="${dao.getAllReevaluation()}"></c:set>
+                        <c:set var="lstReevaluation" value="${dao.getAllReevaluationUnpaid()}"></c:set>
                         <c:if test="${not empty lstReevaluation}">
                             <table border="1">
                                 <thead>
@@ -51,26 +51,26 @@
                                 <tbody>
 
                                     <c:forEach var="re" items="${lstReevaluation}">
-                                        <html:form action="action">
-                                        <input type="hidden"  name="ree" value="${re.reEvaluationId}" />
-                                        <tr>
+                                        <html:form action="viewReevaluationUnpaid">
+                                            <html:hidden property="reEvaluationId" value="${re.reEvaluationId}"></html:hidden>
+                                                <tr>
 
-                                            <td>${re.marks.student.studentId}</td>
-                                            <td>${re.marks.subjects.subjectName}</td>
-                                            <td>${re.marks.mark}</td>
-                                            <td>${re.marks.isPassed}</td>
-                                            <td>${re.isUpdated}</td>
-                                            <td><html:submit property="button" value="Edit"></html:submit></td>
-                                            </tr>
-                                    </html:form>
-                                </c:forEach>
+                                                <td>${re.marks.student.studentId}</td>
+                                                <td>${re.marks.subjects.subjectName}</td>
+                                                <td>${re.marks.mark}</td>
+                                                <td>${re.marks.isPassed}</td>
+                                                <td>${re.isUpdated}</td>
+                                                <td><html:submit property="button" value="Pending"></html:submit></td>
+                                                </tr>
+                                        </html:form>
+                                    </c:forEach>
 
 
                                 </tbody>
 
                             </table>
                         </c:if>
-                        <c:if test="${empty dao.getAllReevaluation()}">
+                        <c:if test="${empty dao.getAllReevaluationUnpaid()}">
                             <table border="1">
                                 <thead>
                                     <tr>
@@ -86,8 +86,8 @@
 
                                 <tbody>
                                     <tr>
-                                        <td colspan="6">don't have re-evaluation</td>
-                                        
+                                        <td colspan="6">don't have re-evaluation Unpaid</td>
+
                                     </tr>
                                 </tbody>
 

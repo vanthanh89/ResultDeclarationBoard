@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package actionBean;
 
 import ActionFormBean.ActionFormBean;
 import hibernate.dao.AcademicDepartmentDAO;
 import hibernate.entity.MarksId;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
@@ -38,12 +38,32 @@ public class InsertReevaluation extends org.apache.struts.action.Action {
     public ActionForward execute(ActionMapping mapping, ActionForm form,
             HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ActionFormBean afb = (ActionFormBean)form;
+        ActionFormBean afb = (ActionFormBean) form;
         AcademicDepartmentDAO dao = new AcademicDepartmentDAO();
-        MarksId mid = new MarksId(afb.getStudentId(), afb.getSubjectId());
-        dao.insertReevaluation(afb.getStudentId(), afb.getSubjectId());
-        dao.updateMark(mid,Integer.parseInt(afb.getMark()));
-        request.setAttribute("info", "reevaluation success!");
+        if (afb.getButton().equalsIgnoreCase("Cancel")) {
+            List lstMark = dao.getMarkByStudentId(afb.getStudentId());
+            request.setAttribute("lstMark", lstMark);
+            request.setAttribute("studentId", afb.getStudentId());
+            return mapping.findForward(SUCCESS);
+        }
+        if (afb.getButton().equalsIgnoreCase("Submit")) {
+            if (dao.checkReevaluation(afb.getStudentId(), afb.getSubjectId())) {
+                request.setAttribute("info", "this mark is re-evaluation!");
+                List lstMark = dao.getMarkByStudentId(afb.getStudentId());
+                request.setAttribute("lstMark", lstMark);
+                request.setAttribute("studentId", afb.getStudentId());
+                return mapping.findForward(SUCCESS);
+            } else {
+                MarksId mid = new MarksId(afb.getStudentId(), afb.getSubjectId());
+                dao.insertReevaluation(afb.getStudentId(), afb.getSubjectId());
+                dao.updateMark(mid, Integer.parseInt(afb.getMark()));
+                request.setAttribute("info", "reevaluation success! <br/> please go to office academic payment");
+                List lstMark = dao.getMarkByStudentId(afb.getStudentId());
+                request.setAttribute("lstMark", lstMark);
+                request.setAttribute("studentId", afb.getStudentId());
+                return mapping.findForward(SUCCESS);
+            }
+        }
         return mapping.findForward(SUCCESS);
     }
 }

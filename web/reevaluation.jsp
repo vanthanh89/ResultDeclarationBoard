@@ -22,7 +22,7 @@
         <div id="main">
             <div id="content">
                 <div class="box_container"><div style="text-align: left;font-size: 20px; margin-left: 10px;">phúc tra phúc khảo điểm thi</div></div>
-                <div class="box_container"><a href="results.jsp"><input type="submit" value="Back" /></a></div>
+               
                 <div class="box_container"><h1>Chi tiết phúc tra phúc khảo</h1></div>
 
                 <div class="box_container">
@@ -33,7 +33,7 @@
                                  <html:hidden property="studentId" value="${mark.student.studentId}"></html:hidden>
                                  <html:hidden property="subjectId" value="${mark.subjects.subjectId}"></html:hidden>
                                  <html:hidden property="mark" value="${mark.mark}"></html:hidden>
-                                <table border="1">
+                                <table border="0">
                                     <tbody>
                                         <tr>
                                             <td>Student ID:</td>
@@ -52,7 +52,8 @@
                                             <td>${mark.subjects.cost}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2"><html:submit value="Submit" ></html:submit></td>
+                                            <td><html:submit property="button" value="Submit" ></html:submit></td>
+                                            <td><html:submit property="button" value="Cancel" ></html:submit></td>
                                         </tr>
                                     </tbody>
                                 </table>
