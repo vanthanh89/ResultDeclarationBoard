@@ -4,6 +4,7 @@
     Author     : ThangCao
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
@@ -65,9 +66,9 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a href="insertmark.jsp">Academic Home</a></li>                    
-                        <li><a  class="current"  href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
-                        <li><a  href="StatisticsSubjectByFailedNumberBySemester.jsp">Statistic<!--[if IE 7]><!--></a></li>
+                        <li><a  href="insertmark.jsp">Academic Home</a></li>                    
+                        <li><a  href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
+                        <li><a class="current" href="StatisticsSubjectByFailedNumberBySemester.jsp">Statistic<!--[if IE 7]><!--></a></li>
                     </ul>
                 </div> 
                 <div class="center_content">  
@@ -79,85 +80,63 @@
                             </form>            
                         </div>    
                         <div class="sidebarmenu">            
-                            <a class="menuitem " href="viewreevaluationunpaid.jsp">View Re-evaluation Unpaid</a> 
-                            <a class="menuitem " href="viewreevaluation.jsp">View Re-evaluation Pending</a>
-                            <a class="menuitem " href="viewreevaluationcancel.jsp">View Re-evaluation Cancel</a>
-                            <a class="menuitem " href="viewreevaluationupdated.jsp">View Re-evaluation Updated</a>
+                            <a class="menuitem " href="StatisticsSubjectByFailedNumberBySemester.jsp" title="Subject By Failed Number By Semester">Subject By Failed Number By Semester</a> 
+                            <a class="menuitem " href="StatisticStudentByMarksInSemesterTop5.jsp" title="Top 5 student by marks in a semester">Top 5 student by marks in a semester</a>
+                            <a class="menuitem " href="StatisticsSubjectByPassedRateBySemester.jsp" title="Subject By Passed Rate By Semester">Subject By Passed Rate By Semester</a>
+                            <a class="menuitem " href="StatisticsStudentByMarksInSubjectOfSemester.jsp" title="Student By Marks In Subject Of Semester">Student By Marks In Subject Of Semester</a>
                         </div>            
                     </div>  
 
                     <div class="right_content">            
-                       <center>
-                        <h1>Re-evaluation Pending List</h1>
-
-                        <div style="color: blue">${requestScope.info}</div>
-                        <jsp:useBean id="dao" class="hibernate.dao.AcademicDepartmentDAO" scope="session"></jsp:useBean>
-                       <jsp:useBean id="now" class="java.util.Date"/>
-                        <c:set var="lstReevaluation" value="${dao.getAllReevaluation()}"></c:set>
-                        <c:if test="${not empty lstReevaluation}">
-                            <table border="0">
-                                <thead>
-                                    <tr>
-
-                                        <th class="header_table">Student ID</th>
-                                        <th class="header_table">Subject Name</th>
-                                        <th class="header_table">Mark</th>
-                                        <th class="header_table">IsPassed</th>
-                                        <th class="header_table">Date Register</th>
-                                        <th class="header_table">Status</th>
-                                        <th class="header_table">Update</th>
-                                        
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    <c:forEach var="re" items="${lstReevaluation}">
-                                        <html:form action="action">
-                                        <input type="hidden"  name="ree" value="${re.reEvaluationId}" />
+                        <center>
+                            <h2>Statistic Subject by number of failed student by Semster</h2>
+                            <html:form action="sp_SubjectByFailedNumberBySemester">
+                                <jsp:useBean id="dao" class="hibernate.dao.AcademicDepartmentDAO" scope="session"></jsp:useBean>
+                                    <table border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td>Semester :</td>
+                                                <td>
+                                                <html:select property="semesterId" style="width: 150px;">
+                                                    <c:forEach var="sem" items="${dao.getAllSemester()}"  >
+                                                        <html:option value="${sem.semesterId}">${sem.term}</html:option>
+                                                    </c:forEach>
+                                                </html:select>
+                                            </td>
+                                        </tr>
                                         <tr>
-                                            <fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${re.registeredDate}"></fmt:formatDate>
-                                            <td class="vl_table">${re.marks.student.studentId}</td>
-                                            <td class="vl_table">${re.marks.subjects.subjectName}</td>
-                                            <td class="vl_table">${re.marks.mark}</td>
-                                            <td class="vl_table">${re.marks.isPassed}</td>
-                                            <td class="vl_table">${date}</td>
-                                            <td class="vl_table">${re.isUpdated}</td>
-                                            <td class="vl_table"><html:submit property="button" value="Edit"></html:submit></td>
+                                            <td colspan="2" style="text-align: center; padding: 10px;"><html:submit value="Submit"></html:submit></td>
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                            </html:form>
+                            <br />
+                            <br />
+                            <div>
+                                <c:if test="${not empty requestScope.resultSet3}">
+                                    <table>
+                                        <thead>
+                                            <th class="header_table">Subject Name </th>
+                                            <th class="header_table">Failed Number </th>
+                                            <th class="header_table">Total Number </th>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                ResultSet rs = (ResultSet) request.getAttribute("resultSet3");
+                                            %>
+                                            <% while (rs.next()) { %>
+                                            <tr>
+                                                <td class="vl_table"><%= rs.getString(1) %></td>
+                                                <td class="vl_table"><%= rs.getInt(2) %></td>
+                                                <td class="vl_table"><%= rs.getInt(3) %></td>
                                             </tr>
-                                    </html:form>
-                                </c:forEach>
+                                            <% }%>
+                                        </tbody>
+                                    </table>
+                                </c:if>
+                            </div>
+                        </center>
 
-
-                                </tbody>
-
-                            </table>
-                        </c:if>
-                        <c:if test="${empty dao.getAllReevaluation()}">
-                            <table border="1">
-                                <thead>
-                                    <tr>
-                                        <th class="header_table">Student ID</th>
-                                        <th class="header_table">Subject Name</th>
-                                        <th class="header_table">Mark</th>
-                                        <th class="header_table">IsPassed</th>
-                                        <th class="header_table">Date Register</th>
-                                        <th class="header_table">Status</th>
-                                        <th class="header_table">Update</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td colspan="7">don't have re-evaluation</td>
-                                        
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </c:if>
-                    </center>
-                        
                     </div>
                 </div>
                 <div class="clear"></div>

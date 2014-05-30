@@ -67,8 +67,8 @@ public class UpdateRevaluation extends org.apache.struts.action.Action {
                 return mapping.findForward(Error);
             }
             if (flag) {
-
-                academic.updateReevaluation(afb.getReEvaluationId());
+                
+                academic.updateReevaluation(afb.getReEvaluationId(),Integer.parseInt(afb.getMarkOld()));
                 MarksId marsId = new MarksId(afb.getStudentId(),afb.getSubjectId());
                 academic.updateMark(marsId, Integer.parseInt(afb.getMark()));
                 request.setAttribute("info", "success");

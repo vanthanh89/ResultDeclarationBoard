@@ -65,8 +65,8 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a href="insertmark.jsp">Academic Home</a></li>                    
-                        <li><a  class="current"  href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
+                        <li><a  href="insertmark.jsp">Academic Home</a></li>                    
+                        <li><a class="current" href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
                         <li><a  href="StatisticsSubjectByFailedNumberBySemester.jsp">Statistic<!--[if IE 7]><!--></a></li>
                     </ul>
                 </div> 
@@ -87,13 +87,13 @@
                     </div>  
 
                     <div class="right_content">            
-                       <center>
-                        <h1>Re-evaluation Pending List</h1>
+                    <center>
+                        <h1>Re-evaluation Cancel List</h1>
 
-                        <div style="color: blue">${requestScope.info}</div>
+                        
                         <jsp:useBean id="dao" class="hibernate.dao.AcademicDepartmentDAO" scope="session"></jsp:useBean>
-                       <jsp:useBean id="now" class="java.util.Date"/>
-                        <c:set var="lstReevaluation" value="${dao.getAllReevaluation()}"></c:set>
+                        <jsp:useBean id="now" class="java.util.Date"/>
+                        <c:set var="lstReevaluation" value="${dao.getAllReevaluationUnpaid()}"></c:set>
                         <c:if test="${not empty lstReevaluation}">
                             <table border="0">
                                 <thead>
@@ -106,34 +106,42 @@
                                         <th class="header_table">Date Register</th>
                                         <th class="header_table">Status</th>
                                         <th class="header_table">Update</th>
-                                        
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
                                     <c:forEach var="re" items="${lstReevaluation}">
-                                        <html:form action="action">
-                                        <input type="hidden"  name="ree" value="${re.reEvaluationId}" />
-                                        <tr>
-                                            <fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${re.registeredDate}"></fmt:formatDate>
-                                            <td class="vl_table">${re.marks.student.studentId}</td>
-                                            <td class="vl_table">${re.marks.subjects.subjectName}</td>
-                                            <td class="vl_table">${re.marks.mark}</td>
-                                            <td class="vl_table">${re.marks.isPassed}</td>
-                                            <td class="vl_table">${date}</td>
-                                            <td class="vl_table">${re.isUpdated}</td>
-                                            <td class="vl_table"><html:submit property="button" value="Edit"></html:submit></td>
+                                        
+                                                <tr>
+                                                <fmt:formatDate var="yearnow" pattern="yyyy" value="${now }"></fmt:formatDate>
+                                                <fmt:formatDate var="yeartest" pattern="yyyy" value="${re.registeredDate}"></fmt:formatDate>
+                                                <fmt:formatDate var="daynow" pattern="DD" value="${now }"></fmt:formatDate>
+                                                <fmt:formatDate var="daytest" pattern="DD" value="${re.registeredDate}"></fmt:formatDate>
+                                                <fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${re.registeredDate}"></fmt:formatDate>
+                                                <c:choose>
+                                                    <c:when test="${ (yearnow == yeartest) &&((daynow - daytest) > 7) }">
+                                                        <td class="vl_table">${re.marks.student.studentId}</td>
+                                                        <td class="vl_table">${re.marks.subjects.subjectName}</td>
+                                                        <td class="vl_table">${re.marks.mark}</td>
+                                                        <td class="vl_table">${re.marks.isPassed}</td>
+                                                        <td class="vl_table">${date}</td>
+                                                        <td class="vl_table">${"cancel"}</td>
+                                                        <td class="vl_table"><html:submit  value="Pending" disabled="true"></html:submit></td>
+                                                    </c:when>
+                                                   
+                                                </c:choose>
+
                                             </tr>
-                                    </html:form>
-                                </c:forEach>
+                                       
+                                    </c:forEach>
 
 
                                 </tbody>
 
                             </table>
                         </c:if>
-                        <c:if test="${empty dao.getAllReevaluation()}">
+                        <c:if test="${empty dao.getAllReevaluationUnpaid()}">
                             <table border="1">
                                 <thead>
                                     <tr>
@@ -149,8 +157,8 @@
 
                                 <tbody>
                                     <tr>
-                                        <td colspan="7">don't have re-evaluation</td>
-                                        
+                                        <td colspan="7">don't have re-evaluation Unpaid</td>
+
                                     </tr>
                                 </tbody>
 

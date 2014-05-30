@@ -23,9 +23,28 @@ public class ActionFormBean extends org.apache.struts.action.ActionForm {
     private String button;
     
     private String mark;
+    
     private int studentId;
     private String strStudentId;
     private int reEvaluationId;
+    private String markOld;
+    private int semesterId;
+
+    public int getSemesterId() {
+        return semesterId;
+    }
+
+    public void setSemesterId(int semesterId) {
+        this.semesterId = semesterId;
+    }
+    
+    public String getMarkOld() {
+        return markOld;
+    }
+
+    public void setMarkOld(String markOld) {
+        this.markOld = markOld;
+    }
    
     public String getStrStudentId() {
         return strStudentId;

@@ -46,7 +46,7 @@ public class AcademicDepartmentDAO {
             marks.setSubjects(sub);
             marks.setMark(mark);
 
-            marks.setIsReevaluated("notReevaluated");
+            marks.setIsReevaluated("No");
             Date d = new Date(System.currentTimeMillis());
             marks.setTestDate(d);
             if (sub.getMinMark() > mark) {
@@ -73,6 +73,42 @@ public class AcademicDepartmentDAO {
         try {
             session.getTransaction().begin();
             String sql = " from Subjects ";
+            Query query = session.createQuery(sql);
+            List lstSubject = query.list();
+//            session.flush();
+            session.getTransaction().commit();
+            return lstSubject;
+        } catch (Exception ex) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+        }
+        return null;
+    }
+    public List getAllSubjectBySemesterId( int semesterId) {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            String sql = " from Subjects where semesterId="+semesterId+" ";
+            Query query = session.createQuery(sql);
+            List lstSubject = query.list();
+//            session.flush();
+            session.getTransaction().commit();
+            return lstSubject;
+        } catch (Exception ex) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+        }
+        return null;
+    }
+    public List getAllSemester() {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            String sql = " from Semester ";
             Query query = session.createQuery(sql);
             List lstSubject = query.list();
 //            session.flush();
@@ -194,12 +230,38 @@ public class AcademicDepartmentDAO {
         }
         return null;
     }
+
+    public List getAllReevaluationUpdated() {
+        CreateSession create = new CreateSession();
+        Session session = create.getSession();
+        try {
+            session.getTransaction().begin();
+            String sql = " from ReEvaluation where isUpdated ='updated' ";
+            Query query = session.createQuery(sql);
+
+            List<ReEvaluation> result = (List<ReEvaluation>) query.list();
+
+            for (ReEvaluation re : result) {
+                Hibernate.initialize(re.getMarks());
+                Hibernate.initialize(re.getMarks().getSubjects());
+            }
+            session.flush();
+            session.getTransaction().commit();
+            return result;
+        } catch (Exception ex) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+        }
+        return null;
+    }
+
     public List getAllReevaluationUnpaid() {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
         try {
             session.getTransaction().begin();
-            String sql = " from ReEvaluation where isUpdated ='unpaid' ";
+            String sql = " from ReEvaluation where isUpdated ='registered' ";
             Query query = session.createQuery(sql);
 
             List<ReEvaluation> result = (List<ReEvaluation>) query.list();
@@ -228,7 +290,7 @@ public class AcademicDepartmentDAO {
             marks.setMark(mark);
             Date d = new Date(System.currentTimeMillis());
             marks.setTestDate(d);
-            marks.setIsReevaluated("Reevaluated");
+            marks.setIsReevaluated("Yes");
             if (mark < marks.getSubjects().getMinMark()) {
                 marks.setIsPassed("failed");
             } else {
@@ -245,13 +307,14 @@ public class AcademicDepartmentDAO {
         }
     }
 
-    public void updateReevaluation(int reEvaluationid) {
+    public void updateReevaluation(int reEvaluationid, int mark) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
         try {
             session.getTransaction().begin();
             ReEvaluation re = (ReEvaluation) session.get(ReEvaluation.class, reEvaluationid);
-            re.setIsUpdated("Updated");
+            re.setIsUpdated("updated");
+            re.setOldMark(mark);
             session.update(re);
             session.flush();
             session.getTransaction().commit();
@@ -262,7 +325,8 @@ public class AcademicDepartmentDAO {
             e.printStackTrace();
         }
     }
-public void updateReevaluationToPending(int reEvaluationid) {
+
+    public void updateReevaluationToPending(int reEvaluationid) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
         try {
@@ -279,6 +343,7 @@ public void updateReevaluationToPending(int reEvaluationid) {
             e.printStackTrace();
         }
     }
+
     public Marks getMarkById(MarksId id) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
@@ -325,10 +390,12 @@ public void updateReevaluationToPending(int reEvaluationid) {
 
             session.getTransaction().begin();
             ReEvaluation re = new ReEvaluation();
-            MarksId mid = new MarksId(studentId,subjectId);
-            Marks m =(Marks) session.get(Marks.class, mid);
+            MarksId mid = new MarksId(studentId, subjectId);
+            Marks m = (Marks) session.get(Marks.class, mid);
             re.setMarks(m);
-            re.setIsUpdated("unpaid");
+            Date d = new Date(System.currentTimeMillis());
+            re.setRegisteredDate(d);
+            re.setIsUpdated("registered");
             session.save(re);
             session.flush();
             session.getTransaction().commit();
@@ -340,8 +407,8 @@ public void updateReevaluationToPending(int reEvaluationid) {
 
         }
     }
-    public boolean checkReevaluation(int studentId,int subjectId)
-    {
+
+    public boolean checkReevaluation(int studentId, int subjectId) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
         try {

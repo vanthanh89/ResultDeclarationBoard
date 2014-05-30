@@ -65,8 +65,8 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a href="insertmark.jsp">Academic Home</a></li>                    
-                        <li><a  class="current"  href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
+                        <li><a  href="insertmark.jsp">Academic Home</a></li>                    
+                        <li><a class="current" href="viewreevaluationunpaid.jsp">Manage Re-evaluation<!--[if IE 7]><!--></a></li>
                         <li><a  href="StatisticsSubjectByFailedNumberBySemester.jsp">Statistic<!--[if IE 7]><!--></a></li>
                     </ul>
                 </div> 
@@ -87,13 +87,13 @@
                     </div>  
 
                     <div class="right_content">            
-                       <center>
-                        <h1>Re-evaluation Pending List</h1>
+                     <center>
+                        <h1>Re-evaluation Updated List</h1>
 
-                        <div style="color: blue">${requestScope.info}</div>
+                       
                         <jsp:useBean id="dao" class="hibernate.dao.AcademicDepartmentDAO" scope="session"></jsp:useBean>
-                       <jsp:useBean id="now" class="java.util.Date"/>
-                        <c:set var="lstReevaluation" value="${dao.getAllReevaluation()}"></c:set>
+                        <jsp:useBean id="now" class="java.util.Date"/>
+                        <c:set var="lstReevaluation" value="${dao.getAllReevaluationUpdated()}"></c:set>
                         <c:if test="${not empty lstReevaluation}">
                             <table border="0">
                                 <thead>
@@ -101,20 +101,18 @@
 
                                         <th class="header_table">Student ID</th>
                                         <th class="header_table">Subject Name</th>
-                                        <th class="header_table">Mark</th>
+                                        <th class="header_table">Mark Old</th>
                                         <th class="header_table">IsPassed</th>
                                         <th class="header_table">Date Register</th>
                                         <th class="header_table">Status</th>
-                                        <th class="header_table">Update</th>
-                                        
+
                                     </tr>
                                 </thead>
 
                                 <tbody>
 
                                     <c:forEach var="re" items="${lstReevaluation}">
-                                        <html:form action="action">
-                                        <input type="hidden"  name="ree" value="${re.reEvaluationId}" />
+
                                         <tr>
                                             <fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${re.registeredDate}"></fmt:formatDate>
                                             <td class="vl_table">${re.marks.student.studentId}</td>
@@ -123,34 +121,35 @@
                                             <td class="vl_table">${re.marks.isPassed}</td>
                                             <td class="vl_table">${date}</td>
                                             <td class="vl_table">${re.isUpdated}</td>
-                                            <td class="vl_table"><html:submit property="button" value="Edit"></html:submit></td>
-                                            </tr>
-                                    </html:form>
-                                </c:forEach>
+
+                                        </tr>
+
+                                    </c:forEach>
 
 
                                 </tbody>
 
                             </table>
                         </c:if>
-                        <c:if test="${empty dao.getAllReevaluation()}">
-                            <table border="1">
+                        <c:if test="${empty dao.getAllReevaluationUpdated()}">
+                            <table border="0">
                                 <thead>
                                     <tr>
+
                                         <th class="header_table">Student ID</th>
                                         <th class="header_table">Subject Name</th>
-                                        <th class="header_table">Mark</th>
+                                        <th class="header_table">Mark Old</th>
                                         <th class="header_table">IsPassed</th>
                                         <th class="header_table">Date Register</th>
                                         <th class="header_table">Status</th>
-                                        <th class="header_table">Update</th>
+
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr>
-                                        <td colspan="7">don't have re-evaluation</td>
-                                        
+                                        <td colspan="7">don't have re-evaluation updated</td>
+
                                     </tr>
                                 </tbody>
 

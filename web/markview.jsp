@@ -49,7 +49,7 @@
                                        
                                     <html:hidden property="studentId" value="${mark.student.studentId}"></html:hidden>
                                     <html:hidden property="subjectId" value="${mark.subjects.subjectId}"></html:hidden>
-                                   
+                                   <fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${mark.testDate}"></fmt:formatDate>
                                     <div class="value_table">
                                         <div class="value_row">${mark.subjects.subjectName}</div>
                                     </div>
@@ -59,8 +59,9 @@
                                     <div class="value_table">
                                         <div class="value_row">${mark.subjects.maxMark}</div>
                                     </div>
+                                    
                                     <div class="value_table">
-                                        <div class="value_row">${mark.testDate}</div>
+                                        <div class="value_row">${date}</div>
                                     </div>
                                     <div class="value_table">
                                         <div class="value_row">${mark.isPassed}</div>
@@ -71,7 +72,7 @@
                                         <fmt:formatDate var="daynow" pattern="DD" value="${now }"></fmt:formatDate>
                                         <fmt:formatDate var="daytest" pattern="DD" value="${mark.testDate}"></fmt:formatDate>
                                         <c:choose>
-                                            <c:when test="${ (yearnow == yeartest) &&((daynow - daytest) < 7) && (mark.isReevaluated == 'notReevaluated') }">
+                                            <c:when test="${ (yearnow == yeartest) &&((daynow - daytest) < 8) && (mark.isReevaluated == 'No') }">
                                                 <div class="value_row"><html:submit  value="re-evaluation" ></html:submit></div>
                                             </c:when>
                                             <c:otherwise>

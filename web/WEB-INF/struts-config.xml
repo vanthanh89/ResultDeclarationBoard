@@ -49,6 +49,22 @@
         <action input="/viewreevaluationunpaid.jsp" name="ActionFormBean" path="/viewReevaluationUnpaid" scope="request" type="actionBean.ViewReevaluationUnpaid" validate="false">
             <forward name="success" path="/viewreevaluationunpaid.jsp"/>
         </action>
+        <action input="/StatisticsSubjectByFailedNumberBySemester.jsp" name="ActionFormBean" path="/sp_SubjectByFailedNumberBySemester" scope="request" type="actionBean.sp_SubjectByFailedNumberBySemester" validate="false">
+            <forward name="success" path="/StatisticsSubjectByFailedNumberBySemester.jsp"/>
+            
+        </action>
+        <action input="/StatisticStudentByMarksInSemesterTop5.jsp" name="ActionFormBean" path="/sp_StudentByMarksInSemesterTop5" scope="request" type="actionBean.sp_StudentByMarksInSemesterTop5" validate="false">
+            <forward name="success" path="/StatisticStudentByMarksInSemesterTop5.jsp"/>
+        </action>
+        <action input="/StatisticsSubjectByPassedRateBySemester.jsp" name="ActionFormBean" path="/sp_SubjectByPassedRateBySemester" scope="request" type="actionBean.sp_SubjectByPassedRateBySemester" validate="false">
+            <forward name="success" path="/StatisticsSubjectByPassedRateBySemester.jsp"/>
+        </action>
+        <action input="/StatisticsStudentByMarksInSubjectOfSemester.jsp" name="ActionFormBean" path="/getSubjectBySemesterId" scope="request" type="actionBean.getSubjectBySemesterId" validate="false">
+            <forward name="success" path="/StatisticsStudentByMarksInSubjectOfSemester.jsp"/>
+        </action>
+        <action input="/StatisticsStudentByMarksInSubjectOfSemester.jsp" name="ActionFormBean" path="/sp_StudentByMarksInSubject" scope="request" type="actionBean.sp_StudentByMarksInSubject" validate="false">
+            <forward name="success" path="/StatisticsStudentByMarksInSubjectOfSemester.jsp"/>
+        </action>
         
         <action path="/Welcome" forward="/welcomeStruts.jsp"/>
     </action-mappings>

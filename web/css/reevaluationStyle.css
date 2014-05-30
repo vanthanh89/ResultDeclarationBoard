@@ -1,0 +1,15 @@
+
+.header_table
+{
+    width: 100px;
+    color: #0000ff;
+    background-color: #ffff33;
+    padding: 10px;
+}
+.vl_table{
+     width: 100px;
+     color: #000066;
+     background-color: #e6e6e6;
+     text-align: center;
+     padding: 5px;
+}

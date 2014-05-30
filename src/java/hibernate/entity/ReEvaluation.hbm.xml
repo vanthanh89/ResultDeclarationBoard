@@ -15,5 +15,11 @@
         <property name="isUpdated" type="string">
             <column name="isUpdated" />
         </property>
+        <property name="oldMark" type="java.lang.Integer">
+            <column name="oldMark" />
+        </property>
+        <property name="registeredDate" type="timestamp">
+            <column name="registeredDate" length="23" />
+        </property>
     </class>
 </hibernate-mapping>
