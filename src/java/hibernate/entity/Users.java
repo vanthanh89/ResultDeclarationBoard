@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
+// Generated May 30, 2014 8:57:36 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;

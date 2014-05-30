@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
+// Generated May 30, 2014 8:57:36 PM by Hibernate Tools 3.6.0
 
 
 
@@ -10,14 +10,14 @@ public class MarksId  implements java.io.Serializable {
 
 
      private int studentId;
-     private int subjectId;
+     private int semSubjId;
 
     public MarksId() {
     }
 
-    public MarksId(int studentId, int subjectId) {
+    public MarksId(int studentId, int semSubjId) {
        this.studentId = studentId;
-       this.subjectId = subjectId;
+       this.semSubjId = semSubjId;
     }
    
     public int getStudentId() {
@@ -27,12 +27,12 @@ public class MarksId  implements java.io.Serializable {
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-    public int getSubjectId() {
-        return this.subjectId;
+    public int getSemSubjId() {
+        return this.semSubjId;
     }
     
-    public void setSubjectId(int subjectId) {
-        this.subjectId = subjectId;
+    public void setSemSubjId(int semSubjId) {
+        this.semSubjId = semSubjId;
     }
 
 
@@ -43,14 +43,14 @@ public class MarksId  implements java.io.Serializable {
 		 MarksId castOther = ( MarksId ) other; 
          
 		 return (this.getStudentId()==castOther.getStudentId())
- && (this.getSubjectId()==castOther.getSubjectId());
+ && (this.getSemSubjId()==castOther.getSemSubjId());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getStudentId();
-         result = 37 * result + this.getSubjectId();
+         result = 37 * result + this.getSemSubjId();
          return result;
    }   
 

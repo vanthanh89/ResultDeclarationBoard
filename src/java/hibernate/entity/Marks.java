@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
+// Generated May 30, 2014 8:57:36 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -14,9 +14,10 @@ public class Marks  implements java.io.Serializable {
 
 
      private MarksId id;
+     private SemesterSubject semesterSubject;
      private Student student;
-     private Subjects subjects;
      private Integer mark;
+     private Integer updatedTime;
      private Date testDate;
      private String isPassed;
      private String isReevaluated;
@@ -26,16 +27,17 @@ public class Marks  implements java.io.Serializable {
     }
 
 	
-    public Marks(MarksId id, Student student, Subjects subjects) {
+    public Marks(MarksId id, SemesterSubject semesterSubject, Student student) {
         this.id = id;
+        this.semesterSubject = semesterSubject;
         this.student = student;
-        this.subjects = subjects;
     }
-    public Marks(MarksId id, Student student, Subjects subjects, Integer mark, Date testDate, String isPassed, String isReevaluated, Set<ReEvaluation> reEvaluations) {
+    public Marks(MarksId id, SemesterSubject semesterSubject, Student student, Integer mark, Integer updatedTime, Date testDate, String isPassed, String isReevaluated, Set<ReEvaluation> reEvaluations) {
        this.id = id;
+       this.semesterSubject = semesterSubject;
        this.student = student;
-       this.subjects = subjects;
        this.mark = mark;
+       this.updatedTime = updatedTime;
        this.testDate = testDate;
        this.isPassed = isPassed;
        this.isReevaluated = isReevaluated;
@@ -49,6 +51,13 @@ public class Marks  implements java.io.Serializable {
     public void setId(MarksId id) {
         this.id = id;
     }
+    public SemesterSubject getSemesterSubject() {
+        return this.semesterSubject;
+    }
+    
+    public void setSemesterSubject(SemesterSubject semesterSubject) {
+        this.semesterSubject = semesterSubject;
+    }
     public Student getStudent() {
         return this.student;
     }
@@ -56,19 +65,19 @@ public class Marks  implements java.io.Serializable {
     public void setStudent(Student student) {
         this.student = student;
     }
-    public Subjects getSubjects() {
-        return this.subjects;
-    }
-    
-    public void setSubjects(Subjects subjects) {
-        this.subjects = subjects;
-    }
     public Integer getMark() {
         return this.mark;
     }
     
     public void setMark(Integer mark) {
         this.mark = mark;
+    }
+    public Integer getUpdatedTime() {
+        return this.updatedTime;
+    }
+    
+    public void setUpdatedTime(Integer updatedTime) {
+        this.updatedTime = updatedTime;
     }
     public Date getTestDate() {
         return this.testDate;

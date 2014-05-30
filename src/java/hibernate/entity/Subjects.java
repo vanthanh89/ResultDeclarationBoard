@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
+// Generated May 30, 2014 8:57:36 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -13,12 +13,11 @@ public class Subjects  implements java.io.Serializable {
 
 
      private int subjectId;
-     private Semester semester;
      private String subjectName;
      private Integer minMark;
      private Integer maxMark;
      private Integer cost;
-     private Set<Marks> markses = new HashSet<Marks>(0);
+     private Set<SemesterSubject> semesterSubjects = new HashSet<SemesterSubject>(0);
 
     public Subjects() {
     }
@@ -28,14 +27,13 @@ public class Subjects  implements java.io.Serializable {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
     }
-    public Subjects(int subjectId, Semester semester, String subjectName, Integer minMark, Integer maxMark, Integer cost, Set<Marks> markses) {
+    public Subjects(int subjectId, String subjectName, Integer minMark, Integer maxMark, Integer cost, Set<SemesterSubject> semesterSubjects) {
        this.subjectId = subjectId;
-       this.semester = semester;
        this.subjectName = subjectName;
        this.minMark = minMark;
        this.maxMark = maxMark;
        this.cost = cost;
-       this.markses = markses;
+       this.semesterSubjects = semesterSubjects;
     }
    
     public int getSubjectId() {
@@ -44,13 +42,6 @@ public class Subjects  implements java.io.Serializable {
     
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
-    }
-    public Semester getSemester() {
-        return this.semester;
-    }
-    
-    public void setSemester(Semester semester) {
-        this.semester = semester;
     }
     public String getSubjectName() {
         return this.subjectName;
@@ -80,12 +71,12 @@ public class Subjects  implements java.io.Serializable {
     public void setCost(Integer cost) {
         this.cost = cost;
     }
-    public Set<Marks> getMarkses() {
-        return this.markses;
+    public Set<SemesterSubject> getSemesterSubjects() {
+        return this.semesterSubjects;
     }
     
-    public void setMarkses(Set<Marks> markses) {
-        this.markses = markses;
+    public void setSemesterSubjects(Set<SemesterSubject> semesterSubjects) {
+        this.semesterSubjects = semesterSubjects;
     }
 
 

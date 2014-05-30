@@ -1,5 +1,5 @@
 package hibernate.entity;
-// Generated May 21, 2014 5:40:05 PM by Hibernate Tools 3.6.0
+// Generated May 30, 2014 8:57:36 PM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
@@ -13,26 +13,10 @@ public class ReEvaluation  implements java.io.Serializable {
 
      private int reEvaluationId;
      private Marks marks;
-     private String isUpdated;
      private Integer oldMark;
+     private String isUpdated;
      private Date registeredDate;
 
-    public Integer getOldMark() {
-        return oldMark;
-    }
-
-    public void setOldMark(Integer oldMark) {
-        this.oldMark = oldMark;
-    }
-
-    public Date getRegisteredDate() {
-        return registeredDate;
-    }
-
-    public void setRegisteredDate(Date registeredDate) {
-        this.registeredDate = registeredDate;
-    }
-     
     public ReEvaluation() {
     }
 
@@ -40,10 +24,12 @@ public class ReEvaluation  implements java.io.Serializable {
     public ReEvaluation(int reEvaluationId) {
         this.reEvaluationId = reEvaluationId;
     }
-    public ReEvaluation(int reEvaluationId, Marks marks, String isUpdated) {
+    public ReEvaluation(int reEvaluationId, Marks marks, Integer oldMark, String isUpdated, Date registeredDate) {
        this.reEvaluationId = reEvaluationId;
        this.marks = marks;
+       this.oldMark = oldMark;
        this.isUpdated = isUpdated;
+       this.registeredDate = registeredDate;
     }
    
     public int getReEvaluationId() {
@@ -60,12 +46,26 @@ public class ReEvaluation  implements java.io.Serializable {
     public void setMarks(Marks marks) {
         this.marks = marks;
     }
+    public Integer getOldMark() {
+        return this.oldMark;
+    }
+    
+    public void setOldMark(Integer oldMark) {
+        this.oldMark = oldMark;
+    }
     public String getIsUpdated() {
         return this.isUpdated;
     }
     
     public void setIsUpdated(String isUpdated) {
         this.isUpdated = isUpdated;
+    }
+    public Date getRegisteredDate() {
+        return this.registeredDate;
+    }
+    
+    public void setRegisteredDate(Date registeredDate) {
+        this.registeredDate = registeredDate;
     }
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 30, 2014 8:57:38 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="hibernate.entity.SemesterSubject" table="Semester_Subject" schema="dbo" catalog="ResultDeclaration">
+        <id name="semSubjId" type="java.lang.Integer">
+            <column name="sem_subjId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="curriculumSemester" class="hibernate.entity.CurriculumSemester" fetch="select">
+            <column name="cur_semId" />
+        </many-to-one>
+        <many-to-one name="subjects" class="hibernate.entity.Subjects" fetch="select">
+            <column name="subjectId" />
+        </many-to-one>
+        <set name="markses" table="Marks" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="sem_subjId" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.entity.Marks" />
+        </set>
+    </class>
+</hibernate-mapping>

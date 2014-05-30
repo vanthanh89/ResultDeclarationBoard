@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 21, 2014 5:40:07 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 30, 2014 8:57:38 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="hibernate.entity.Subjects" table="Subjects" schema="dbo" catalog="ResultDeclaration">
         <id name="subjectId" type="java.lang.Integer">
             <column name="subjectId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="semester" class="hibernate.entity.Semester" fetch="select">
-            <column name="semesterId" />
-        </many-to-one>
         <property name="subjectName" type="string">
             <column name="subjectName" not-null="true" />
         </property>
@@ -23,11 +20,11 @@
         <property name="cost" type="java.lang.Integer">
             <column name="cost" />
         </property>
-        <set name="markses" table="Marks" inverse="true" lazy="true" fetch="select">
+        <set name="semesterSubjects" table="Semester_Subject" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="subjectId" not-null="true" />
+                <column name="subjectId" />
             </key>
-            <one-to-many class="hibernate.entity.Marks" />
+            <one-to-many class="hibernate.entity.SemesterSubject" />
         </set>
     </class>
 </hibernate-mapping>

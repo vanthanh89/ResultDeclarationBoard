@@ -8,6 +8,7 @@ package hibernate.dao;
 import hibernate.entity.Marks;
 import hibernate.entity.MarksId;
 import hibernate.entity.ReEvaluation;
+import hibernate.entity.SemesterSubject;
 import hibernate.entity.Student;
 import hibernate.entity.Subjects;
 import hibernate.entity.Users;
@@ -31,28 +32,28 @@ public class AcademicDepartmentDAO {
 //        SessionFactory factory = HibernateUtil.getSessionFactory();
 //        this.session = factory.getCurrentSession();
 //    }
-    public void uploadMark(int studentId, int subjectId, int mark) {
+    public void uploadMark(int studentId, int semestersubjectId, int mark) {
         CreateSession create = new CreateSession();
         Session session = create.getSession();
         try {
 
             session.getTransaction().begin();
             Marks marks = new Marks();
-            MarksId marksid = new MarksId(studentId, subjectId);
+            MarksId marksid = new MarksId(studentId, semestersubjectId);
             marks.setId(marksid);
             Student stu = (Student) session.get(Student.class, studentId);
-            Subjects sub = (Subjects) session.get(Subjects.class, subjectId);
+            SemesterSubject sub = (SemesterSubject) session.get(SemesterSubject.class, semestersubjectId);
             marks.setStudent(stu);
-            marks.setSubjects(sub);
+            marks.setSemesterSubject(sub);
             marks.setMark(mark);
 
             marks.setIsReevaluated("No");
             Date d = new Date(System.currentTimeMillis());
             marks.setTestDate(d);
-            if (sub.getMinMark() > mark) {
+            if (sub.getSubjects().getMinMark()> mark) {
                 marks.setIsPassed("failed");
             }
-            if (sub.getMinMark() <= mark) {
+            else{
                 marks.setIsPassed("passed");
             }
             session.save(marks);
@@ -218,7 +219,7 @@ public class AcademicDepartmentDAO {
 
             for (ReEvaluation re : result) {
                 Hibernate.initialize(re.getMarks());
-                Hibernate.initialize(re.getMarks().getSubjects());
+                Hibernate.initialize(re.getMarks().getSemesterSubject());
             }
             session.flush();
             session.getTransaction().commit();
@@ -243,7 +244,7 @@ public class AcademicDepartmentDAO {
 
             for (ReEvaluation re : result) {
                 Hibernate.initialize(re.getMarks());
-                Hibernate.initialize(re.getMarks().getSubjects());
+                Hibernate.initialize(re.getMarks().getSemesterSubject());
             }
             session.flush();
             session.getTransaction().commit();
@@ -268,7 +269,7 @@ public class AcademicDepartmentDAO {
 
             for (ReEvaluation re : result) {
                 Hibernate.initialize(re.getMarks());
-                Hibernate.initialize(re.getMarks().getSubjects());
+                Hibernate.initialize(re.getMarks().getSemesterSubject());
             }
             session.flush();
             session.getTransaction().commit();
@@ -291,7 +292,7 @@ public class AcademicDepartmentDAO {
             Date d = new Date(System.currentTimeMillis());
             marks.setTestDate(d);
             marks.setIsReevaluated("Yes");
-            if (mark < marks.getSubjects().getMinMark()) {
+            if (mark < marks.getSemesterSubject().getSubjects().getMinMark()) {
                 marks.setIsPassed("failed");
             } else {
                 marks.setIsPassed("passed");
@@ -370,7 +371,7 @@ public class AcademicDepartmentDAO {
             List<Marks> result = (List<Marks>) query.list();
             for (Marks re : result) {
                 Hibernate.initialize(re.getStudent());
-                Hibernate.initialize(re.getSubjects());
+                Hibernate.initialize(re.getSemesterSubject());
             }
             session.flush();
             session.getTransaction().commit();
